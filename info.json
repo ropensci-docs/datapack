@@ -1,0 +1,12 @@
+{
+  "commit": {
+    "commit": "cf22e27a55856ce87ff15b6cbcc2d6411634be83",
+    "author": "gothub <slaughter@nceas.ucsb.edu>",
+    "time": "2020-11-03 18:13:57",
+    "files": 2,
+    "merge": false,
+    "message": "Update cran-comments.md, NEWS for 1.4.0\n"
+  },
+  "remote": "https://github.com/ropensci/datapack",
+  "pkg": "datapack"
+}
