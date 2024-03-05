@@ -1,0 +1,12 @@
+{
+  "commit": {
+    "commit": "30d3be8b618f2c52d25c356e97680000feb101c9",
+    "author": "Jeanette <jclark@nceas.ucsb.edu>",
+    "time": "2022-06-09 21:03:40",
+    "files": 2,
+    "merge": true,
+    "message": "Merge branch 'develop' of https://github.com/ropensci/datapack into develop\n"
+  },
+  "repo": "https://github.com/ropensci/datapack",
+  "pkg": "datapack"
+}
