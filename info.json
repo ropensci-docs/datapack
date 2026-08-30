@@ -1,0 +1,13 @@
+{
+  "commit": {
+    "commit": "c865aa532fa08c63098f2771ca80ba768f3c743c",
+    "author": "Matt Jones <gitcode@magisa.org>",
+    "time": "2025-10-10T00:00:06Z",
+    "files": 1,
+    "merge": false,
+    "message": "Update cran comments for resubmission of 1.4.2\n"
+  },
+  "repo": "https://github.com/ropensci/datapack",
+  "pkg": "datapack",
+  "time": "2026-08-30T07:13:17Z"
+}
