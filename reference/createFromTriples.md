@@ -1,0 +1,90 @@
+# Populate a ResourceMap with RDF relationships from data.frame
+
+RDF relationships are added to a ResourceMap object from a data.frame
+that contains RDF triples. For example, relationships can be exported
+from a DataPackage via
+[`getRelationships`](https://docs.ropensci.org/datapack/reference/getRelationships.md).
+The resulting data.frame is then read by `createFromTriples` to create
+the ResourceMap.
+
+## Usage
+
+``` r
+createFromTriples(x, ...)
+
+# S4 method for class 'ResourceMap'
+createFromTriples(
+  x,
+  relations,
+  identifiers,
+  resolveURI = NA_character_,
+  externalIdentifiers = list(),
+  creator = NA_character_,
+  ...
+)
+```
+
+## Arguments
+
+- x:
+
+  a ResourceMap
+
+- ...:
+
+  (Additional parameters)
+
+- relations:
+
+  A data.frame to read relationships from
+
+- identifiers:
+
+  A list of the identifiers of data objects contained in the associated
+  data package
+
+- resolveURI:
+
+  A character string containing a URI to prepend to datapackage
+  identifiers.
+
+- externalIdentifiers:
+
+  A list of identifiers that are referenced from the package, but are
+  not package members.
+
+- creator:
+
+  A `character` string containing the creator of the package.
+
+## Details
+
+The `identifiers` parameter contains the identifiers of all data objects
+in the DataPackage. For each data objects, additional relationships will
+be added that are required by the OAI-ORE specification, for example a
+Dublin Core identifier statement is added. The resolveURI string value
+is prepended to DataPackage member identifiers in the resulting resource
+map. If no resolveURI value is specified, then
+'https://cn.dataone.org/cn/v1/resolve' is used.
+
+## See also
+
+[`ResourceMap-class`](https://docs.ropensci.org/datapack/reference/ResourceMap-class.md)
+
+## Examples
+
+``` r
+library(datapack)
+dp <- new("DataPackage")
+data <- charToRaw("1,2,3\n4,5,6")
+do1 <- new("DataObject", id="id1", data, format="text/csv")
+do2 <- new("DataObject", id="id2", data, format="text/csv")
+dp <- addMember(dp, do1)
+dp <- addMember(dp, do2)
+dp <- insertRelationship(dp, subjectID="id1", objectIDs="id2", 
+  predicate="http://www.w3.org/ns/prov#wasDerivedFrom")
+relations <- getRelationships(dp)
+resMapId <- sprintf("%s%s", "resourceMap_", uuid::UUIDgenerate())  
+resMap <- new("ResourceMap", id=resMapId)
+resMap <- createFromTriples(resMap, relations, getIdentifiers(dp)) 
+```
